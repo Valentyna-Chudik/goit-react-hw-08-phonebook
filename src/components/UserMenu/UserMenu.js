@@ -6,7 +6,7 @@ import { logOut } from '../../redux/auth/auth-operations';
 
 export default function UserMenu() {
   const dispatch = useDispatch();
-  const name = useSelector(getUserName());
+  const name = useSelector(getUserName);
   //  const avatar = defaultAvatar;
   return (
     <div>

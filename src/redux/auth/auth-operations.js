@@ -17,7 +17,7 @@ import {
 
 axios.defaults.baseURL = 'http://goit-phonebook-api.herokuapp.com';
 
-const token = {
+const userToken = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
@@ -29,10 +29,12 @@ const token = {
 export const register = credentials => dispatch => {
   dispatch(registerRequest());
 
-  axios.post('/users/signup', credentials);
-  token
-    .set(token)
-    .then(({ data }) => dispatch(registerSuccess(data)))
+  axios
+    .post('/users/signup', credentials)
+    .then(({ data: { user, token } }) => {
+      userToken.set(token);
+      dispatch(registerSuccess({ user, token }));
+    })
     .catch(error => dispatch(registerError(error.message)));
 };
 
@@ -41,7 +43,10 @@ export const logIn = credentials => dispatch => {
 
   axios
     .post('/users/login', credentials)
-    .then(({ data }) => dispatch(loginSuccess(data)))
+    .then(({ data: { user, token } }) => {
+      userToken.set(token);
+      dispatch(loginSuccess({ user, token }));
+    })
     .catch(error => dispatch(loginError(error.message)));
 };
 
@@ -50,6 +55,28 @@ export const logOut = credentials => dispatch => {
 
   axios
     .post('/users/logout', credentials)
-    .then(({ data }) => dispatch(logoutSuccess(data)))
+    .then(() => {
+      userToken.unset();
+      dispatch(logoutSuccess());
+    })
     .catch(error => dispatch(logoutError(error.message)));
+};
+
+export const getCurrentUser = () => (dispatch, getState) => {
+  const {
+    auth: { token: persistedToken },
+  } = getState();
+
+  if (!persistedToken) {
+    return;
+  }
+
+  userToken.set(persistedToken);
+
+  dispatch(getCurrentUserRequest());
+
+  axios
+    .get('/users/current')
+    .then(({ data }) => dispatch(getCurrentUserSuccess(data)))
+    .catch(error => dispatch(getCurrentUserError(error.message)));
 };
