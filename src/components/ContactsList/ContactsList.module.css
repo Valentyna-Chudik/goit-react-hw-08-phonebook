@@ -5,33 +5,27 @@
 .contactsItem {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 10px;
+  padding: 10px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+
+  border: 1px solid #d3d3d3;
+  border-radius: 10px;
+  background-color: #b2ebf2;
 }
-.contactName {
+.contactName,
+.contactNumber {
   display: flex;
-  flex-direction: column;
-  margin: 0 0 0 30px;
+  align-items: center;
+  min-width: 160px;
 
   font-weight: 700;
+  color: #212121;
 }
 
-.buttonDelete {
-  display: inline-block;
-  margin: 0;
-  width: 70px;
-
-  border: 1px solid transparent;
-  border-radius: 5px;
-  color: white;
-  border-color: #d43f3a;
-  background-color: #d9534f;
-  outline: none;
-  cursor: pointer;
-  transition: transform 250ms linear;
-}
-
-.buttonDelete:hover {
-  background-color: red;
-  transform: scale(1.1);
+.icon {
+  margin-right: 5px;
+  color: #212121;
 }

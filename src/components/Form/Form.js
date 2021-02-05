@@ -1,19 +1,16 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
+import Button from '@material-ui/core/Button';
 
 import { addContact } from '../../redux/contacts/contacts-operations';
-import {
-  getContacts,
-  getLoading,
-} from '../../redux/contacts/contacts-selectors';
-import Loader from '../Loader/Loader';
+import { getContacts } from '../../redux/contacts/contacts-selectors';
 import styles from './Form.module.css';
 
 export default function Form() {
   const contacts = useSelector(getContacts);
-  const isLoading = useSelector(getLoading);
   const dispatch = useDispatch();
+
   const onSubmit = (name, number) => dispatch(addContact(name, number));
 
   const [name, setName] = useState('');
@@ -62,7 +59,6 @@ export default function Form() {
     <>
       <form className={styles.form} onSubmit={handleSubmit}>
         <label className={styles.label}>
-          <span className={styles.inputName}>Name</span>
           <input
             className={styles.input}
             type="text"
@@ -73,7 +69,6 @@ export default function Form() {
           ></input>
         </label>
         <label className={styles.label}>
-          <span className={styles.inputName}>Number</span>
           <input
             className={styles.input}
             type="tel"
@@ -83,13 +78,11 @@ export default function Form() {
             onChange={handleInputChange}
           ></input>
         </label>
-        {!isLoading && (
-          <button className={styles.buttonAdd} type="submit">
-            Add contact
-          </button>
-        )}
+
+        <Button variant="contained" color="primary" type="submit">
+          Add contact
+        </Button>
       </form>
-      {isLoading && <Loader />}
     </>
   );
 }

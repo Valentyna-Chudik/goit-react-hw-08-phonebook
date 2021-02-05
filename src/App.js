@@ -6,8 +6,10 @@ import AppBar from './components/AppBar/AppBar';
 import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import Container from './components/Container/Container';
+import Loader from './components/Loader/Loader';
 import { getCurrentUser } from './redux/auth/auth-operations';
 import { getIsFetchingCurrentUser } from './redux/auth/auth-selectors';
+
 const HomeView = lazy(() =>
   import('./views/HomeView/HomeView' /* webpackChunkName: "home-view" */),
 );
@@ -39,19 +41,16 @@ export default function App() {
       <Container>
         <AppBar />
         <Switch>
-          <Suspense fallback={<p>Loading...</p>}>
+          <Suspense fallback={<Loader />}>
             <PublicRoute exact path="/">
               <HomeView />
             </PublicRoute>
-
             <PublicRoute exact path="/register" restricted>
               <RegisterView />
             </PublicRoute>
-
             <PublicRoute exact path="/login" restricted redirectTo="/contacts">
               <LoginView />
             </PublicRoute>
-
             <PrivateRoute exact path="/contacts" redirectTo="/login">
               <ContactsView />
             </PrivateRoute>

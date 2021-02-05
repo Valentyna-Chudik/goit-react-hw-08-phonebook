@@ -15,7 +15,7 @@ import {
   getCurrentUserError,
 } from './auth-actions';
 
-axios.defaults.baseURL = 'http://goit-phonebook-api.herokuapp.com';
+axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com';
 
 const userToken = {
   set(token) {
@@ -70,9 +70,7 @@ export const getCurrentUser = () => (dispatch, getState) => {
   if (!persistedToken) {
     return;
   }
-
   userToken.set(persistedToken);
-
   dispatch(getCurrentUserRequest());
 
   axios

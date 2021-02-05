@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 import { logIn } from '../../redux/auth/auth-operations';
 import styles from './LoginView.module.css';
@@ -25,6 +27,9 @@ export default function LoginView() {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (email.trim() === '' || password.trim() === '') {
+      return alert(`All fields must be completed.`);
+    }
     dispatch(logIn({ email, password }));
     reset();
   };
@@ -35,28 +40,35 @@ export default function LoginView() {
   };
 
   return (
-    <div>
-      <h1>Sign in Page</h1>
-      <form onSubmit={handleSubmit} autoComplete="off" className={styles.form}>
-        <label className={styles.label}>
-          Email
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </label>
-        <label className={styles.label}>
-          Password
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={handleChange}
-          />
-        </label>
-        <button type="submit">Sign in</button>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Please Sign In</h1>
+
+      <form onSubmit={handleSubmit} autoComplete="off">
+        <TextField
+          className={styles.textField}
+          id="outlined-basic"
+          label="Email"
+          variant="outlined"
+          type="email"
+          name="email"
+          value={email}
+          onChange={handleChange}
+          margin="dense"
+        />
+        <TextField
+          className={styles.textField}
+          id="outlined-basic"
+          label="Password"
+          variant="outlined"
+          type="password"
+          name="password"
+          value={password}
+          onChange={handleChange}
+          margin="dense"
+        />
+        <Button variant="contained" type="submit">
+          Sign in
+        </Button>
       </form>
     </div>
   );

@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import {
   fetchContactRequest,
   fetchContactSuccess,
@@ -20,17 +21,6 @@ export const fetchContact = () => dispatch => {
     .catch(error => dispatch(fetchContactError(error.message)));
 };
 
-// export const fetchContact = () => async dispatch => {
-//   dispatch(fetchContactRequest());
-//   try {
-//     const { data } = await axios.get('/contacts');
-
-//     dispatch(fetchContactSuccess(data));
-//   } catch (error) {
-//     dispatch(fetchContactError(error));
-//   }
-// };
-
 export const addContact = (name, number) => dispatch => {
   const contact = { name, number };
 
@@ -50,3 +40,14 @@ export const deleteContact = contactId => dispatch => {
     .then(() => dispatch(deleteContactSuccess(contactId)))
     .catch(error => dispatch(deleteContactError(error.message)));
 };
+
+// export const fetchContact = () => async dispatch => {
+//   dispatch(fetchContactRequest());
+//   try {
+//     const { data } = await axios.get('/contacts');
+
+//     dispatch(fetchContactSuccess(data));
+//   } catch (error) {
+//     dispatch(fetchContactError(error));
+//   }
+// };

@@ -3,9 +3,17 @@
   text-decoration: none;
   padding: 12px;
   font-weight: 700;
-  color: #2a363b;
+  font-size: 20px;
+  color: #b2ebf2;
+
+  transition: all 250ms ease-in;
+}
+
+.link:hover {
+  transform: scale(1.02);
 }
 
 .activeLink {
-  color: #e84a5f;
+  color: #ffffff;
+  text-decoration: underline;
 }
