@@ -1,13 +1,13 @@
 .container {
-  min-height: calc(100vh - 80px);
+  min-height: calc(100vh - 100px);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .title {
-  font-weight: 700;
   text-align: right;
+  font-weight: 700;
 }
 
 .primaryText {
@@ -17,6 +17,37 @@
 
 .secondaryText {
   font-size: 30px;
-
   color: #0097a7;
+}
+
+.img {
+  width: 260px;
+}
+
+@media screen and (max-width: 530px) {
+  .primaryText {
+    font-size: 38px;
+  }
+
+  .secondaryText {
+    font-size: 20px;
+  }
+
+  .img {
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 482px) {
+  .primaryText {
+    font-size: 30px;
+  }
+
+  .secondaryText {
+    font-size: 16px;
+  }
+
+  .img {
+    width: 140px;
+  }
 }

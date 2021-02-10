@@ -1,3 +1,7 @@
 .container {
-  padding: 30px;
+  max-width: 600px;
+  min-height: calc(100vh - 100px);
+  margin: 0 auto;
+  padding-top: 30px;
+  text-align: center;
 }

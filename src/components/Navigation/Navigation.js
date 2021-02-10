@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import { getIsAuthenticated } from '../../redux/auth/auth-selectors';
-import logo from '../../logo.png';
+import logo from '../../img/logo.png';
 import styles from './Navigation.module.css';
 
 export default function Navigation() {

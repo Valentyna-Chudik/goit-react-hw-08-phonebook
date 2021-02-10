@@ -8,9 +8,7 @@ import styles from './RegisterView.module.css';
 
 export default function RegisterView() {
   const dispatch = useDispatch();
-  // const onSubmit = (name, email, password) =>
-  //   dispatch(register(name, email, password));
-
+ 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

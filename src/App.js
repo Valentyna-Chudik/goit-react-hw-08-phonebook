@@ -7,6 +7,7 @@ import PrivateRoute from './components/PrivateRoute';
 import PublicRoute from './components/PublicRoute';
 import Container from './components/Container/Container';
 import Loader from './components/Loader/Loader';
+import Footer from './components/Footer/Footer';
 import { getCurrentUser } from './redux/auth/auth-operations';
 import { getIsFetchingCurrentUser } from './redux/auth/auth-selectors';
 
@@ -26,7 +27,6 @@ const ContactsView = lazy(() =>
     './views/ContactsView/ContactsView' /* webpackChunkName: "contacts-view" */
   ),
 );
-// const UploadView = lazy(() => import('./views/UploadView'));
 
 export default function App() {
   const dispatch = useDispatch();
@@ -56,6 +56,7 @@ export default function App() {
             </PrivateRoute>
           </Suspense>
         </Switch>
+        <Footer />
       </Container>
     )
   );

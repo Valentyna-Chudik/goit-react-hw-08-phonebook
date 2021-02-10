@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import NumberFormat from 'react-number-format';
 import { useSelector, useDispatch } from 'react-redux';
 import Button from '@material-ui/core/Button';
 
@@ -40,10 +41,10 @@ export default function Form() {
       alert(`All fields must be completed.`);
     } else if (contacts.find(contact => contact.name === name)) {
       alert(`${name} is already in contacts.`);
+    } else if (name.length > 18) {
+      alert('Name is too long. Maximum 18 characters.');
     } else if (contacts.find(contact => contact.number === number)) {
       alert(`${number} is already in contacts.`);
-    } else if (Number.isNaN(+number)) {
-      alert('Phone number should consist only of digits.');
     } else {
       onSubmit(name, number);
     }
@@ -69,14 +70,17 @@ export default function Form() {
           ></input>
         </label>
         <label className={styles.label}>
-          <input
-            className={styles.input}
+          <NumberFormat
+            placeholder="Number"
+            format="(###) ###-##-##"
+            mask="_"
+            pattern="^[0-9\s\(\)\-]{15}"
             type="tel"
             name="number"
-            placeholder="Number"
             value={number}
             onChange={handleInputChange}
-          ></input>
+            className={styles.input}
+          />
         </label>
 
         <Button variant="contained" color="primary" type="submit">

@@ -1,5 +1,5 @@
+import contacts from '../../img/contacts.png';
 import styles from './HomeView.module.css';
-import contacts from '../../contacts1.png';
 
 export default function HomeView() {
   return (
@@ -12,7 +12,7 @@ export default function HomeView() {
           Keep your contacts organized and up to date{' '}
         </span>
       </h1>
-      <img src={contacts} alt="logo" width="260" className={styles.logo} />
+      <img src={contacts} alt="contacts" className={styles.img} />
     </div>
   );
 }
